@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Expense Tracker - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    
+    <div id="container">
+        <div id="h1-container">
+            <h1>Home</h1>     
+        </div>
+        <hr>
+        <div id="buttons">
+            <button id="modalBtn" class="button">Groceries</button>
+            <div id="simpleModal" class="modal">
+                <div class="modal-content">
+                    <form id="groceries">
+                        <label for="amount">Amount</label>
+                        <input type="number" name="groceries-amount" required id="groceries-amount">
+                        <br>
+                        <label for="groceries-comment">Comment</label>                
+                        <input type="text" name="groceries-comment" id="groceries-comment">
+                        <br>
+                        <button id="enter" type="submit">Enter</button>
+                        <br>
+                        <span id="closeBtn">close</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+                   
+    </div>
+<script src="main.js"></script>  
+</body>
+
+</html>
+
+
+
+
+<!-- 
+
+. don't have separate pages - when you click 'groceries' you should just get a pop-up input field (MODAL)
+. averages page
+
+
+
+ -->
