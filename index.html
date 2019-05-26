@@ -15,26 +15,17 @@
             <h1>Home</h1>     
         </div>
         <hr>
-        <div id="buttons">
-            <button id="modalBtn" class="button">Groceries</button>
-            <div id="simpleModal" class="modal">
-                <div class="modal-content">
-                    <form id="groceries">
-                        <label for="amount">Amount</label>
-                        <input type="number" name="groceries-amount" required id="groceries-amount">
-                        <br>
-                        <label for="groceries-comment">Comment</label>                
-                        <input type="text" name="groceries-comment" id="groceries-comment">
-                        <br>
-                        <button id="enter" type="submit">Enter</button>
-                        <br>
-                        <span id="closeBtn">close</span>
-                    </form>
-                </div>
-            </div>
+        <div>
+            <form id="new-category-form">
+                <label for="category">New Category</label>
+                <input type="text" name="category" placeholder="Name of Category" required id="category">
+                <button type="submit">Enter</button>   
+            </form>
         </div>
-                   
+        <div id="categories">         
+        </div>
     </div>
+        
 <script src="main.js"></script>  
 </body>
 
