@@ -13,77 +13,8 @@
     margin: 0;
     text-transform: uppercase;
     font-family: 'Titillium Web', sans-serif;
-    text-align: center;
+    
     
 }
 
-body {
-    background-color: var(--background-main);
-    color: var(--text-color);
-}
-
-
-
-#container {
-    width: 90%;
-    margin: 2em auto;
-    height: 90vh;
-    background-color: var(--background-second);
-    border: 5px solid black;
-    border-radius: 20px; 
-}
-
-#h1-container {
-    font-size: 2em;
-    margin-bottom: 1rem;
-}
-
-
-
-#new-category-form {
-    display: block;
-    padding-bottom: 30px;
-}
-
-#new-category-form label {
-    margin: 0em 1em;
-    font-size: 1.5em;
-    display: block;
-}
-
-#categories {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    /* background-color: blue; */
-    
-}
-
-.category-div {
-    background-color: lightblue;
-    padding: 1em;
-    margin: 1em;
-    border: 2px solid yellow;
-    border-radius: 10px;
-    max-width: 100%;
-}
-
-.category-div label {
-    display: block;
-    font-size: 1.9em;
-    
-}
-
-.category-div input {
-    font-size: 1.5em;
-    margin-right: 2%;
-}
-
-button {
-    margin-right: 1em;
-    font-size: 1em;
-    
-    padding-left: 3em;
-    padding-right: 3em;
-}
 
