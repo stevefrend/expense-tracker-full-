@@ -17,5 +17,16 @@
     
 }
 
+body {
+  max-width: 50%;
+  margin: auto;
+  text-align: center;
+}
+
+#new-expense-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
 
 
