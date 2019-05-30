@@ -19,7 +19,7 @@ newExpenseForm.addEventListener('submit', addExpense);
 
 function addNewCategoryToPage(e) {
     e.preventDefault();
-    let categoryName = newCategory.value.toLowerCase(); 
+    let categoryName = newCategory.value.toUpperCase(); 
     const newCategoryOption = document.createElement('option');
 
     newCategoryOption.id = categoryName;
@@ -30,7 +30,7 @@ function addNewCategoryToPage(e) {
     categoryDropdown.appendChild(newCategoryOption);
 
     newCategoryForm.reset();   
-    
+    $('#categoryModal').modal('hide')
     allCategories.push(categoryName);  
       
 }
@@ -44,7 +44,7 @@ function addExpense (e) {
     allExpenses.push({category: selectedCategory, amount: inputValue, comment: textValue, date: new Date().toDateString()});
 
     newExpenseForm.reset(); 
-
+    $('#myModal').modal('hide')
     console.log(allExpenses);
 
 }
