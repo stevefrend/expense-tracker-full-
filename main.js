@@ -19,20 +19,28 @@ newExpenseForm.addEventListener('submit', addExpense);
 
 function addNewCategoryToPage(e) {
     e.preventDefault();
-    let categoryName = newCategory.value.toUpperCase(); 
-    const newCategoryOption = document.createElement('option');
-
-    newCategoryOption.id = categoryName;
-    newCategoryOption.value = categoryName;
-    newCategoryOption.className = 'categories-class';
-    newCategoryOption.text = categoryName;
+    let categoryName = newCategory.value.toUpperCase();
+    let newItem = allCategories.indexOf(categoryName);
     
-    categoryDropdown.appendChild(newCategoryOption);
-
+    if (newItem === -1) {
+        
+        const newCategoryOption = document.createElement('option');
+        
+        newCategoryOption.id = categoryName;
+        newCategoryOption.value = categoryName;
+        newCategoryOption.className = 'categories-class';
+        newCategoryOption.text = categoryName;
+        
+        categoryDropdown.appendChild(newCategoryOption);
+        
+        allCategories.push(categoryName); 
+        $('#categoryModal').modal('hide')
+        
+    } else {
+        alert('You already have a category with that name!')
+    }
     newCategoryForm.reset();   
-    $('#categoryModal').modal('hide')
-    allCategories.push(categoryName);  
-      
+                
 }
 
 function addExpense (e) {
@@ -48,8 +56,6 @@ function addExpense (e) {
     console.log(allExpenses);
 
 }
-
-
 
 
 
