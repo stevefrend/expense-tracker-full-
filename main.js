@@ -3,7 +3,17 @@ const allExpenses = [];
 const allCategories = [];
 
 
+// STORING DATES IN VARIABLES
+let today = moment();
+let thisWeek = moment().startOf('week').add(1, 'days');
+let thisMonth = moment().startOf('month');
+let lastMonth = moment().startOf('month').subtract(1, 'months');
+let firstDayOfYear = moment().startOf('year');
 
+
+
+
+// DOM MANIPULATION
 const newCategory = document.getElementById('category');
 
 const newCategoryForm = document.querySelector('#new-category-form');
@@ -54,11 +64,49 @@ function addExpense (e) {
     newExpenseForm.reset(); 
     $('#myModal').modal('hide')
     console.log(allExpenses);
+    console.log(allCategories);
 
 }
 
 
 
+function totalAllCategories () {
+    
+    let totalObject = [];
+    
+    allCategories.forEach(function(currentCategory){
+        let weekTotal = 0;
+        let thisMonthTotal = 0;
+        let lastMonthTotal = 0;
+        let thisYearTotal = 0;
+        
+        allExpenses.forEach(function(currentEntry) {
+            if (currentEntry.category === currentCategory) {
+                if (currentEntry.date > thisWeek) {
+                    weekTotal += currentEntry.amount;   
+                }
+                if (currentEntry.date > thisMonth) {
+                    thisMonthTotal += currentEntry.amount;   
+                }
+                if (currentEntry.date > lastMonth && currentEntry.date < thisMonth) {
+                    lastMonthTotal += currentEntry.amount;   
+                }
+                if (currentEntry.date > firstDayOfYear) {
+                    thisYearTotal += currentEntry.amount;   
+                }                            
+            }
+        })    
+        totalObject.push(
+            {category: currentCategory, 
+                totals: {
+                    thisWeek: weekTotal, 
+                    thisMonth: thisMonthTotal, 
+                    lastMonth: lastMonthTotal, 
+                    thisYear: thisYearTotal}
+            }
+        )        
+    });
+}
 
 
 
