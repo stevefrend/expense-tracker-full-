@@ -1,6 +1,8 @@
+let totalObject = [];
+
+
 function totalAllCategories () {
     
-    let totalObject = [];
     
     const thisWeekDOM = document.querySelector('#this-week');
     const thisMonthDOM = document.querySelector('#this-month');
@@ -9,11 +11,12 @@ function totalAllCategories () {
 
 
     allCategories.forEach(function(currentCategory){
-        let weekTotal = 0;
-        let thisMonthTotal = 0;
-        let lastMonthTotal = 0;
+        let weekTotal = 0;        
+        let thisMonthTotal = 0;        
+        let lastMonthTotal = 0;        
         let thisYearTotal = 0;
-
+        let sixMonthTotal = 0;
+        
         
         
         allExpenses.forEach(function(currentEntry) {
@@ -27,51 +30,72 @@ function totalAllCategories () {
                 if (currentEntry.date > lastMonth && currentEntry.date < thisMonth) {
                     lastMonthTotal += currentEntry.amount;   
                 }
+                if (currentEntry.date > sixMonth && currentEntry.date < thisMonth) {
+                    sixMonthTotal += currentEntry.amount;   
+                }
                 if (currentEntry.date > firstDayOfYear) {
                     thisYearTotal += currentEntry.amount;   
                 }                            
             }
-        })    
+        })
+           
+        let sixMonthAverage = Math.round(sixMonthTotal / 6);
+        let weeklyAverage = Math.round(sixMonthAverage / 26);
+        let monthlyAverage = Math.round(sixMonthAverage / 6);
+        let yearlyAverage = Math.round(sixMonthAverage * 2);
+        
         totalObject.push(
             {category: currentCategory, 
                 totals: {
                     thisWeek: weekTotal, 
                     thisMonth: thisMonthTotal, 
                     lastMonth: lastMonthTotal, 
-                    thisYear: thisYearTotal}
-            }
-        )
-        
-        
-    });
-    // write html additions here
+                    thisYear: thisYearTotal,
+                    sixMonthAverage: sixMonthAverage,
+                    weeklyAverage: weeklyAverage,
+                    monthlyAverage: monthlyAverage,
+                    yearlyAverage: yearlyAverage
+
+                }
+            }            
+        )   
+    
+});
+    
+    // CREATE HTML
     totalObject.forEach(function (entry) {
 
         //WEEK
         let newRowWeek = document.createElement('tr');
         let newItemWeek = document.createElement('td');
         let newItemWeek2 = document.createElement('td');
+        let newItemWeek3 = document.createElement('td');
         
         newRowWeek.id = entry.category + '-row-week'
         newItemWeek.textContent = entry.category; 
-        newItemWeek2.textContent = entry.totals.thisWeek;
+        newItemWeek2.textContent = '$' + entry.totals.thisWeek;
+        newItemWeek3.textContent = '$' + entry.totals.weeklyAverage;
         
         thisWeekDOM.appendChild(newRowWeek);
         newRowWeek.appendChild(newItemWeek);
         newRowWeek.appendChild(newItemWeek2);
+        newRowWeek.appendChild(newItemWeek3);
         
         //MONTH
         let newRowMonth = document.createElement('tr');
         let newItemMonth = document.createElement('td');
         let newItemMonth2 = document.createElement('td');
+        let newItemMonth3 = document.createElement('td');
         
         newRowMonth.id = entry.category + '-row-month'
         newItemMonth.textContent = entry.category; 
-        newItemMonth2.textContent = entry.totals.thisMonth;
+        newItemMonth2.textContent = '$' + entry.totals.thisMonth;
+        newItemMonth3.textContent = '$' + entry.totals.monthlyAverage;
         
         thisMonthDOM.appendChild(newRowMonth);
         newRowMonth.appendChild(newItemMonth);
         newRowMonth.appendChild(newItemMonth2);
+        newRowMonth.appendChild(newItemMonth3);
         
         //LAST MONTH
         let newRowLast = document.createElement('tr');
@@ -80,7 +104,7 @@ function totalAllCategories () {
         
         newRowLast.id = entry.category + '-row-last-month'
         newItemLast.textContent = entry.category; 
-        newItemLast2.textContent = entry.totals.lastMonth;
+        newItemLast2.textContent = '$' + entry.totals.lastMonth;
         
         lastMonthDOM.appendChild(newRowLast);
         newRowLast.appendChild(newItemLast);
@@ -90,17 +114,20 @@ function totalAllCategories () {
         let newRowYear = document.createElement('tr');
         let newItemYear = document.createElement('td');
         let newItemYear2 = document.createElement('td');
+        let newItemYear3 = document.createElement('td');
         
         newRowYear.id = entry.category + '-row-year'
         newItemYear.textContent = entry.category; 
-        newItemYear2.textContent = entry.totals.thisYear;
+        newItemYear2.textContent = '$' + entry.totals.thisYear;
+        newItemYear3.textContent = '$' + entry.totals.yearlyAverage;
         
         thisYearDOM.appendChild(newRowYear);
         newRowYear.appendChild(newItemYear);
         newRowYear.appendChild(newItemYear2);
+        newRowYear.appendChild(newItemYear3);
 
     })
-    
-    console.log(totalObject)
 }
+
+
 totalAllCategories();
