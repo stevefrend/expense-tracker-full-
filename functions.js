@@ -13,11 +13,30 @@ const categoryDropdown = document.getElementById('dropdown');
 newCategoryForm.addEventListener('submit', addNewCategoryToPage);
 newExpenseForm.addEventListener('submit', addExpense);
 
+
+function parseAllCategories () {
+    allCategories.forEach(function(category) {
+        let newCategoryOption = document.createElement('option');
+        
+        newCategoryOption.id = category;
+        newCategoryOption.value = category;
+        newCategoryOption.className = 'categories-class';
+        newCategoryOption.text = category;
+        
+        categoryDropdown.appendChild(newCategoryOption);  
+    })
+
+    let categoriesStringify = JSON.stringify(allCategories);
+    localStorage.setItem('categories', categoriesStringify);
+}
+parseAllCategories();
+
+
 function addNewCategoryToPage(e) {
     e.preventDefault();
     let categoryName = newCategory.value.toUpperCase();
     let newItem = allCategories.indexOf(categoryName);
-    
+
     if (newItem === -1) {
         
         const newCategoryOption = document.createElement('option');
@@ -36,11 +55,16 @@ function addNewCategoryToPage(e) {
         alert('You already have a category with that name!')
     }
     newCategoryForm.reset();   
-                
+    
+    let categoriesStringify = JSON.stringify(allCategories);
+    localStorage.setItem('categories', categoriesStringify);
 }
 
 function addExpense (e) {
     e.preventDefault();
+
+    
+
     let inputValue = Number(amountInput.value);
     let textValue = commentInput.value;
     let selectedCategory = categoryDropdown.value;
@@ -49,6 +73,8 @@ function addExpense (e) {
 
     newExpenseForm.reset(); 
     $('#myModal').modal('hide')
-    console.log(allExpenses);
+
+    let expensesStringify = JSON.stringify(allExpenses);
+    localStorage.setItem('expenses', expensesStringify);
 
 }

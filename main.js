@@ -1,15 +1,7 @@
 
-const allExpenses = [
-    {category: 'GAS', amount: 14, comment: '', date: moment().subtract(1, 'months')},   // may 4
-    {category: 'MISC', amount: 4, comment: '', date: moment()},                         // jun 4
-    {category: 'MISC', amount: 8, comment: '', date: moment()},                         // jun 4
-    {category: 'GAS', amount: 8, comment: '', date: moment().subtract(2, 'days')},      // jun 2
-    {category: 'MISC', amount: 124, comment: '', date: moment().subtract(5, 'days')},   // may 31
-    {category: 'MISC', amount: 123, comment: '', date: moment().subtract(5, 'days')},   // may 31
-    {category: 'GAS', amount: 50, comment: '', date: moment().subtract(5, 'months')}    // feb 4
-];
+const allExpenses = [];
+const allCategories = ['GAS', 'GROCERIES', 'MISC'];
 
-const allCategories = ['GAS', 'MISC'];
 
 
 // STORING DATES IN VARIABLES
