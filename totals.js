@@ -1,4 +1,16 @@
+
+let getCategories = JSON.parse(localStorage.getItem('categories')); 
+let getExpenses = JSON.parse(localStorage.getItem('expenses')); 
+
+let today = moment().format();
+let thisWeek = moment().startOf('week').add(1, 'days').format();
+let thisMonth = moment().startOf('month').format();
+let lastMonth = moment().startOf('month').subtract(1, 'months').format();
+let sixMonth = moment().startOf('month').subtract(6, 'months').format();
+let firstDayOfYear = moment().startOf('year').format();
+
 let totalObject = [];
+
 
 
 function totalAllCategories () {
@@ -10,7 +22,7 @@ function totalAllCategories () {
     const thisYearDOM = document.querySelector('#this-year');
 
 
-    allCategories.forEach(function(currentCategory){
+    getCategories.forEach(function(currentCategory){
         let weekTotal = 0;        
         let thisMonthTotal = 0;        
         let lastMonthTotal = 0;        
@@ -19,7 +31,7 @@ function totalAllCategories () {
         
         
         
-        allExpenses.forEach(function(currentEntry) {
+        getExpenses.forEach(function(currentEntry) {
             if (currentEntry.category === currentCategory) {
                 if (currentEntry.date > thisWeek) {
                     weekTotal += currentEntry.amount;   

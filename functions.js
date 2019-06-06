@@ -14,7 +14,7 @@ newCategoryForm.addEventListener('submit', addNewCategoryToPage);
 newExpenseForm.addEventListener('submit', addExpense);
 
 
-function parseAllCategories () {
+function addAllCategories () {
     allCategories.forEach(function(category) {
         let newCategoryOption = document.createElement('option');
         
@@ -25,11 +25,8 @@ function parseAllCategories () {
         
         categoryDropdown.appendChild(newCategoryOption);  
     })
-
-    let categoriesStringify = JSON.stringify(allCategories);
-    localStorage.setItem('categories', categoriesStringify);
 }
-parseAllCategories();
+addAllCategories();
 
 
 function addNewCategoryToPage(e) {
@@ -54,10 +51,11 @@ function addNewCategoryToPage(e) {
     } else {
         alert('You already have a category with that name!')
     }
-    newCategoryForm.reset();   
-    
+    newCategoryForm.reset();
+
     let categoriesStringify = JSON.stringify(allCategories);
-    localStorage.setItem('categories', categoriesStringify);
+    localStorage.setItem('categories', categoriesStringify);   
+    
 }
 
 function addExpense (e) {
@@ -69,7 +67,7 @@ function addExpense (e) {
     let textValue = commentInput.value;
     let selectedCategory = categoryDropdown.value;
 
-    allExpenses.push({category: selectedCategory, amount: inputValue, comment: textValue, date: moment()});
+    allExpenses.push({category: selectedCategory, amount: inputValue, comment: textValue, date: moment().format()});
 
     newExpenseForm.reset(); 
     $('#myModal').modal('hide')
