@@ -9,7 +9,6 @@ const commentInput = document.getElementById('comment-input');
 const categoryDropdown = document.getElementById('dropdown');
 
 
-
 newCategoryForm.addEventListener('submit', addNewCategoryToPage);
 newExpenseForm.addEventListener('submit', addExpense);
 
