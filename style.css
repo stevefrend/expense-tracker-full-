@@ -5,7 +5,8 @@
 * {
   text-transform: uppercase;
   font-family: 'Titillium Web', sans-serif;
-     
 }
 
-
+.table {
+    font-size: 0.8rem;
+}
