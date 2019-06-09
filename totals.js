@@ -13,9 +13,8 @@ let totalObject = [];
 
 
 
-function totalAllCategories () {
-    
-    
+(function () {
+          
     const thisWeekDOM = document.querySelector('#this-week');
     const thisMonthDOM = document.querySelector('#this-month');
     const lastMonthDOM = document.querySelector('#last-month');
@@ -44,9 +43,11 @@ function totalAllCategories () {
                 }
                 if (currentEntry.date > sixMonth && currentEntry.date < thisMonth) {
                     sixMonthTotal += currentEntry.amount;   
+                    
                 }
                 if (currentEntry.date > firstDayOfYear) {
-                    thisYearTotal += currentEntry.amount;   
+                    thisYearTotal += currentEntry.amount;
+                    
                 }                            
             }
         })
@@ -72,9 +73,9 @@ function totalAllCategories () {
             }            
         )   
     
-});
+    });
     
-    // CREATE HTML
+    // CREATE HTML - this whole thing can use a for loop, or forEach, to go through and add multiple times instead
     totalObject.forEach(function (entry) {
 
         //WEEK
@@ -139,7 +140,7 @@ function totalAllCategories () {
         newRowYear.appendChild(newItemYear3);
 
     })
-}
+})();
 
 
-totalAllCategories();
+// totalAllCategories();
