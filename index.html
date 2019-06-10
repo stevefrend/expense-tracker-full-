@@ -1,33 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Expense Tracker - Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    
-    <div>
+
+    <div id="main-id">
         <div class="mt-4 py-3 text-center">
-            <h1 class="text-primary">Expense Tracker</h1>     
+            <h1 class="text-primary">Expense Tracker</h1>
         </div>
         <div class="mb-4">
-            <nav class="nav justify-content-center">   
-                <ul class="nav nav-pills">
+            <nav class="nav justify-content-center">
+                <ul class="nav nav-pills">                    
                     <li class="nav-item"></li>
-                        <a href="index.html" class="nav-link active">Home</a>
-                    <li class="nav-item"></li>
-                        <a href="totals-averages.html" class="nav-link">Summary</a>
+                    <a href="#summary" class="nav-link">Summary</a>
                 </ul>
-            </nav>  
+            </nav>
         </div>
         <hr>
-        <div class="container mt-5">
-            <button class="btn btn-outline-primary col p-5 mb-5" data-toggle="modal" data-target="#myModal">ADD NEW EXPENSE</button>
+        <div class="container my-5">
+            <button class="btn btn-outline-primary col p-5 mb-5" data-toggle="modal" data-target="#myModal">ADD NEW
+                EXPENSE</button>
             <div class="modal fade" id="myModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -46,7 +47,7 @@
                                         <select class="form-control" name="dropdown" id="dropdown" required>
                                         </select>
                                     </div>
-                                </div>                            
+                                </div>
                                 <div class="form-group mx-3">
                                     <label for="comment">Comment</label>
                                     <input class="form-control" type="text" id="comment-input" placeholder="(Optional)">
@@ -54,51 +55,110 @@
                                 <div class="modal-footer d-flex justify-content-center">
                                     <button class="btn btn-outline-info" type="submit">Enter</button>
                                     <button class="btn" data-dismiss="modal">Close</button>
-                                </div>   
+                                </div>
                             </form>
                         </div>
-                        
+
                     </div>
-                </div>       
+                </div>
             </div>
-            <button class="btn btn-primary col" data-toggle="modal" data-target="#categoryModal">ADD NEW CATEGORY</button>
+            <button class="btn btn-primary col" data-toggle="modal" data-target="#categoryModal">MANAGE CATEGORIES</button>
             <div class="modal fade" id="categoryModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-primary d-flex justify-content-center">
-                            <h5 class="modal-title text-white">New Category</h5>
+                            <h5 class="modal-title text-white">MANAGE CATEGORIES</h5>
                         </div>
-                        <div class="modal-body">                    
+                        <div class="modal-body">
                             <form id="new-category-form">
                                 <div class="row d-flex justify-content-center">
                                     <div class="form-group">
-                                        <input class="form-control" type="text" name="category" placeholder="Name of Category" required id="category">
+                                        <input class="form-control" type="text" name="category"
+                                            placeholder="Add Category" required id="category">
                                     </div>
-                                    
-                                </div>                            
+
+                                </div>
                                 <div class="modal-footer d-flex justify-content-center">
                                     <button class="btn btn-outline-info" type="submit">Enter</button>
                                     <button class="btn" data-dismiss="modal">Close</button>
-                                </div>   
+                                </div>
                             </form>
                         </div>
-                        
+
                     </div>
-                </div>       
+                </div>
             </div>
         </div>
     </div>
+    <hr>
+    <div id="summary">
+        <div class="mt-4 py-3 text-center">
+            <h1 class="text-primary">Summary</h1>
+        </div>
+        <hr>
+        <div>
+            <div class="text-center py-3">
+                <h3 class="display-5">This Week</h3>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="this-week">
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div>
+            <div class="text-center py-3">
+                <h3 class="display-5">This Month</h3>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="this-month">
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div>
+            <div class="text-center py-3">
+                <h3 class="display-5">This Year</h3>
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>Category</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody id="this-year">
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
 
 
-
-<script src="lib/moment/moment.min.js"></script>
-<script src="main.js"></script>
-<script src="functions.js"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>  
+    <script src="lib/moment/moment.min.js"></script>
+    <script src="main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
-
-

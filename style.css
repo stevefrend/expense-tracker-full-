@@ -5,8 +5,14 @@
 * {
   text-transform: uppercase;
   font-family: 'Titillium Web', sans-serif;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .table {
     font-size: 0.8rem;
+}
+
+#main-id {
+    padding-bottom: 200px;
 }
