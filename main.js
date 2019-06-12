@@ -2,36 +2,41 @@
 let allExpenses = [];
 let allCategories = [];
 
-
-// PARSE LOCALSTORAGE
-let localCategories = JSON.parse(localStorage.getItem('categories'));
-let localExpenses = JSON.parse(localStorage.getItem('expenses'));
-let initializeCategories = JSON.stringify(localCategories);
-localStorage.setItem('categories', initializeCategories);
-
-
-
-// DATES IN VARIABLES
-const today = moment().format();
-const thisWeek = moment().startOf('isoWeek').format();
-const thisMonth = moment().startOf('month').format();
-const firstDayOfYear = moment().startOf('year').format();
+const init = function () {
+  if (localStorage.length === 0) {
+    localStorage.setItem('allCategories', JSON.stringify(['GROCERIES', 'RESTAURANTS']));
+    localStorage.setItem('allExpenses', JSON.stringify([]));
+    allCategories.push('GROCERIES', 'RESTAURANTS'); // this is just a preset
+  } else if (localStorage.length > 0) {
+    let parsedCategories = JSON.parse(localStorage.getItem('allCategories'));
+    allCategories = parsedCategories;
+  }
 
 
-// SUMMARY
-const thisWeekDOM = document.querySelector('#this-week');
-const thisMonthDOM = document.querySelector('#this-month');
-const thisYearDOM = document.querySelector('#this-year');
+  // DATES IN VARIABLES
+  today = moment().format();
+  thisWeek = moment().startOf('isoWeek').format();
+  thisMonth = moment().startOf('month').format();
+  firstDayOfYear = moment().startOf('year').format();
 
-// NEW CATEGORY
-const newCategoryInput = document.getElementById('category');
-const newCategoryForm = document.querySelector('#new-category-form');
+  // SUMMARY
+  thisWeekDOM = document.querySelector('#this-week');
+  thisMonthDOM = document.querySelector('#this-month');
+  thisYearDOM = document.querySelector('#this-year');
 
-// NEW EXPENSE
-const newExpenseForm = document.querySelector('#new-expense-form');
-const amountInput = document.getElementById('amount-input');
-const commentInput = document.getElementById('comment-input');
-const categoryDropdown = document.getElementById('dropdown');
+  // NEW CATEGORY
+  newCategoryInput = document.getElementById('category');
+  newCategoryForm = document.querySelector('#new-category-form');
+
+  // NEW EXPENSE
+  newExpenseForm = document.querySelector('#new-expense-form');
+  amountInput = document.getElementById('amount-input');
+  commentInput = document.getElementById('comment-input');
+  categoryDropdown = document.getElementById('dropdown');
+  newExpenseBtn = document.querySelector('#new-expense-btn');
+
+}
+init();
 
 // ADD EVENT LISTENERS
 
@@ -39,32 +44,30 @@ newCategoryForm.addEventListener('submit', function (e) {
   e.preventDefault();
   const categoryName = newCategoryInput.value.toUpperCase();
 
-  if (allCategories.indexOf(categoryName) === -1) {
+  allCategories.push(categoryName);
+  let stringifyCategories = JSON.stringify(allCategories);
+  localStorage.setItem('allCategories', stringifyCategories);
 
-    allCategories.push(categoryName);
-    let categoriesStringify = JSON.stringify(allCategories);
-    localStorage.setItem('categories', categoriesStringify);
+  $('#categoryModal').modal('hide')
 
-
-    const newCategoryOption = document.createElement('option');
-
-    newCategoryOption.id = categoryName;
-    newCategoryOption.value = categoryName;
-    newCategoryOption.text = categoryName;
-
-    categoryDropdown.appendChild(newCategoryOption);
-
-    $('#categoryModal').modal('hide')
-
-  } else {
-    alert('You already have a category with that name!')
-  }
   newCategoryForm.reset();
 });
 
 
+newExpenseBtn.addEventListener('click', function () {
+  categoryDropdown.innerHTML = '';
+  allCategories.forEach(function (category) {
+    let newCategoryOption = document.createElement('option');
+    newCategoryOption.id = category;
+    newCategoryOption.value = category;
+    newCategoryOption.text = category;
+    categoryDropdown.appendChild(newCategoryOption);
+  })
+})
+
 newExpenseForm.addEventListener('submit', function (e) {
   e.preventDefault();
+
   let inputValue = Number(amountInput.value);
   let textValue = commentInput.value;
   let selectedCategory = categoryDropdown.value;
@@ -205,15 +208,5 @@ newExpenseForm.addEventListener('submit', function (e) {
 
 
 // generateSummary();
-
-
-
-
-
-
-
-
-
-
 
 
