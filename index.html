@@ -19,7 +19,7 @@
         </div>
         <div class="mb-4">
             <nav class="nav justify-content-center">
-                <ul class="nav nav-pills">                    
+                <ul class="nav nav-pills">
                     <li class="nav-item"></li>
                     <a href="#summary" class="nav-link">Summary</a>
                 </ul>
@@ -27,7 +27,8 @@
         </div>
         <hr>
         <div class="container my-5">
-            <button class="btn btn-outline-primary col p-5 mb-5" data-toggle="modal" data-target="#myModal" id="new-expense-btn">ADD NEW
+            <button class="btn btn-outline-primary col p-5 mb-5" data-toggle="modal" data-target="#myModal"
+                id="new-expense-btn">ADD NEW
                 EXPENSE</button>
             <div class="modal fade" id="myModal">
                 <div class="modal-dialog">
@@ -45,7 +46,7 @@
                                     <div class="form-group">
                                         <label class="text-center" for="dropdown">Category</label>
                                         <select class="form-control" name="dropdown" id="dropdown" required>
-                                        <!-- CATEGORIES GET APPENDED HERE -->
+                                            <!-- CATEGORIES GET APPENDED HERE -->
                                         </select>
                                     </div>
                                 </div>
@@ -63,7 +64,8 @@
                     </div>
                 </div>
             </div>
-            <button class="btn btn-primary col" data-toggle="modal" data-target="#categoryModal">MANAGE CATEGORIES</button>
+            <button class="btn btn-primary col mb-3" data-toggle="modal" data-target="#categoryModal">MANAGE
+                CATEGORIES</button>
             <div class="modal fade" id="categoryModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -89,6 +91,36 @@
                     </div>
                 </div>
             </div>
+            <button class="btn btn-primary col mb-3" data-toggle="modal" data-target="#expensesModal"
+                id="manage-expenses-btn">MANAGE EXPENSES</button>
+            <div class="modal fade" id="expensesModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header bg-primary d-flex justify-content-center">
+                            <h5 class="modal-title text-white">MANAGE EXPENSES</h5>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table">
+                                <thead class="thead-light">
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Category</th>
+                                        <th scope="col">Amount</th>
+                                        <th scope="col">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="manage-expenses-body">
+                                </tbody>
+                            </table>
+                            <div class="modal-footer d-flex justify-content-center">
+
+                                <button class="btn" id="close-manage-expenses" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <hr>
@@ -99,15 +131,24 @@
         <hr>
         <div>
             <div class="text-center py-3">
-                <h3 class="display-5">This Week</h3>
                 <table class="table">
                     <thead class="thead-light">
                         <tr>
-                            <th>Category</th>
-                            <th>Amount</th>
+                            <th>Time</th>
+                            <th>Category</th>                            
+                            <th>$</th>
                         </tr>
                     </thead>
                     <tbody id="this-week">
+                        <tr>
+                            <td>This Week</td>
+                        </tr>
+                        <tr>
+                            <td>This Month</td>
+                        </tr>
+                        <tr>
+                            <td>This Year</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

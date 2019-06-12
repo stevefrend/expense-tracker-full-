@@ -9,7 +9,9 @@ const init = function () {
     allCategories.push('GROCERIES', 'RESTAURANTS'); // this is just a preset
   } else if (localStorage.length > 0) {
     let parsedCategories = JSON.parse(localStorage.getItem('allCategories'));
+    let parsedExpenses = JSON.parse(localStorage.getItem('allExpenses'));
     allCategories = parsedCategories;
+    allExpenses = parsedExpenses;
   }
 
 
@@ -20,9 +22,9 @@ const init = function () {
   firstDayOfYear = moment().startOf('year').format();
 
   // SUMMARY
-  thisWeekDOM = document.querySelector('#this-week');
-  thisMonthDOM = document.querySelector('#this-month');
-  thisYearDOM = document.querySelector('#this-year');
+  // thisWeekDOM = document.querySelector('#this-week');
+  // thisMonthDOM = document.querySelector('#this-month');
+  // thisYearDOM = document.querySelector('#this-year');
 
   // NEW CATEGORY
   newCategoryInput = document.getElementById('category');
@@ -34,6 +36,10 @@ const init = function () {
   commentInput = document.getElementById('comment-input');
   categoryDropdown = document.getElementById('dropdown');
   newExpenseBtn = document.querySelector('#new-expense-btn');
+  manageExpensesBtn = document.querySelector('#manage-expenses-btn')
+  manageExpensesBody = document.querySelector('#manage-expenses-body')
+  manageExpensesClose = document.querySelector('#close-manage-expenses')
+
 
 }
 init();
@@ -43,13 +49,9 @@ init();
 newCategoryForm.addEventListener('submit', function (e) {
   e.preventDefault();
   const categoryName = newCategoryInput.value.toUpperCase();
-
   allCategories.push(categoryName);
-  let stringifyCategories = JSON.stringify(allCategories);
-  localStorage.setItem('allCategories', stringifyCategories);
-
+  localStorage.setItem('allCategories', JSON.stringify(allCategories));
   $('#categoryModal').modal('hide')
-
   newCategoryForm.reset();
 });
 
@@ -67,25 +69,43 @@ newExpenseBtn.addEventListener('click', function () {
 
 newExpenseForm.addEventListener('submit', function (e) {
   e.preventDefault();
-
-  let inputValue = Number(amountInput.value);
-  let textValue = commentInput.value;
-  let selectedCategory = categoryDropdown.value;
-
-  const entryObject = ({ category: selectedCategory, amount: inputValue, comment: textValue, date: moment().format() });
-
-  allExpenses.push(entryObject)
-
-  const allExpensesStringified = JSON.stringify(allExpenses);
-  localStorage.setItem('expenses', allExpensesStringified);
-
-  newExpenseForm.reset();
+  allExpenses.push({ category: categoryDropdown.value, amount: Number(amountInput.value), comment: commentInput.value, date: moment().format() })
+  localStorage.setItem('allExpenses', JSON.stringify(allExpenses));
   $('#myModal').modal('hide')
+  newExpenseForm.reset();
 
 });
 
 
+// CREATE EDIT FUNCITONALITY
 
+// 1. find a way to add edit button to each entry, with change amount, category, and delete options
+
+manageExpensesBtn.addEventListener('click', function () {
+  const lastFiveExpenses = allExpenses.slice(-5);
+  lastFiveExpenses.reverse();
+  manageExpensesBody.innerHTML = '';
+
+  lastFiveExpenses.forEach(function (entry, index) {
+    let newRow = document.createElement('tr')
+    newRow.id = entry.category + '-id'
+    let newIndex = document.createElement('td');
+    newIndex.textContent = index + 1;
+    let newAmount = document.createElement('td');
+    newAmount.textContent = '$' + entry.amount;
+    let newCategory = document.createElement('td');
+    newCategory.textContent = entry.category;
+    let newDate = document.createElement('td');
+    newDate.textContent = moment(entry.date).format("MMM Do YYYY");
+
+    manageExpensesBody.appendChild(newRow);
+    newRow.appendChild(newIndex);
+    newRow.appendChild(newCategory);
+    newRow.appendChild(newAmount);
+    newRow.appendChild(newDate);
+  });
+
+});
 
 
 
