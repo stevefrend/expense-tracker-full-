@@ -40,6 +40,7 @@ const init = function () {
   manageExpensesBody = document.querySelector('#manage-expenses-body')
   manageExpensesClose = document.querySelector('#close-manage-expenses')
 
+  adam = document.querySelector('#hello');
 
 }
 init();
