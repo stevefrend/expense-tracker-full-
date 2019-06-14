@@ -96,11 +96,11 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header bg-primary d-flex justify-content-center">
-                            <h5 class="modal-title text-white">MANAGE EXPENSES</h5>
+                            <h5 class="modal-title text-white">LAST 5 ENTRIES</h5>
                         </div>
                         <div class="modal-body">
                             <table class="table">
-                                <thead class="thead-light">
+                                <thead class="thead-light"">
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Category</th>
@@ -132,60 +132,29 @@
             <div class="text-center py-3">
                 <table class="table">
                     <thead class="thead-light">
-                        <tr>
-                            <th>Time</th>
-                            <th>Category</th>                            
-                            <th>$</th>
+                        <tr id="t-head">
+                            <th>Current</th>
+                            <!-- <th>Category</th>                             -->
+                            <!-- <th>$</th> -->
+
                         </tr>
                     </thead>
-                    <tbody id="this-week">
-                        <tr>
-                            <td>This Week</td>
+                    <tbody id="this-week"">
+                        <tr id="week-row">
+                            <th scope="row">Week</th> 
                         </tr>
-                        <tr>
-                            <td>This Month</td>
+                        <tr id="month-row">
+                            <th scope="row">Month</th> 
                         </tr>
-                        <tr>
-                            <td>This Year</td>
+                        <tr id="year-row">
+                            <th scope="row">Year</th> 
                         </tr>
+
                     </tbody>
                 </table>
             </div>
 
         </div>
-        <div>
-            <div class="text-center py-3">
-                <h3 class="display-5">This Month</h3>
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Category</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody id="this-month">
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-        <div>
-            <div class="text-center py-3">
-                <h3 class="display-5">This Year</h3>
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr>
-                            <th>Category</th>
-                            <th>Amount</th>
-                        </tr>
-                    </thead>
-                    <tbody id="this-year">
-                    </tbody>
-                </table>
-            </div>
-
-        </div>
-
     </div>
 
 

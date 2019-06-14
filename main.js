@@ -21,10 +21,6 @@ const init = function () {
   thisMonth = moment().startOf('month').format();
   firstDayOfYear = moment().startOf('year').format();
 
-  // SUMMARY
-  // thisWeekDOM = document.querySelector('#this-week');
-  // thisMonthDOM = document.querySelector('#this-month');
-  // thisYearDOM = document.querySelector('#this-year');
 
   // NEW CATEGORY
   newCategoryInput = document.getElementById('category');
@@ -40,7 +36,11 @@ const init = function () {
   manageExpensesBody = document.querySelector('#manage-expenses-body')
   manageExpensesClose = document.querySelector('#close-manage-expenses')
 
-  adam = document.querySelector('#hello');
+  summaryWeek = document.querySelector('#week-row');
+  summaryMonth = document.querySelector('#month-row');
+  summaryYear = document.querySelector('#year-row');
+
+  theadRow = document.querySelector('#t-head');
 
 }
 init();
@@ -80,7 +80,8 @@ newExpenseForm.addEventListener('submit', function (e) {
 
 // CREATE EDIT FUNCITONALITY
 
-// 1. find a way to add edit button to each entry, with change amount, category, and delete options
+// 1. fix summary
+// 2. find a way to add edit button to each entry, with change amount, category, and delete options
 
 manageExpensesBtn.addEventListener('click', function () {
   const lastFiveExpenses = allExpenses.slice(-5);
@@ -108,126 +109,70 @@ manageExpensesBtn.addEventListener('click', function () {
 
 });
 
-
-
-// // ADD LOCALSTORAGE INFO 
-// function addAllCategories(localCategories) {
-//   localCategories.forEach(function (category) {
-//     let newCategoryOption = document.createElement('option');
-
-//     newCategoryOption.id = category;
-//     newCategoryOption.value = category;
-//     newCategoryOption.className = 'categories-class';
-//     newCategoryOption.text = category;
-
-//     categoryDropdown.appendChild(newCategoryOption);
-//   })
-// }
-// addAllCategories(localCategories);
-
-
-// // ADD EXPENSE
-
-
-
 // GENERATE SUMMARY
-// const generateSummary = function () {
+const generateSummary = function () {
 
-//   let totalObject = [];
-
-//   if (localExpenses !== null) {
-//     localCategories.forEach(function (currentCategory) {
-
-//       let weekTotal = 0;
-//       let thisMonthTotal = 0;
-//       let thisYearTotal = 0;
-
-//       localExpenses.forEach(function (currentEntry) {
-//         if (currentEntry.category === currentCategory) {
-//           if (currentEntry.date > thisWeek) {
-//             weekTotal += currentEntry.amount;
-//           }
-//           if (currentEntry.date > thisMonth) {
-//             thisMonthTotal += currentEntry.amount;
-//           }
-//           if (currentEntry.date > firstDayOfYear) {
-//             thisYearTotal += currentEntry.amount;
-//           }
-//         }
-//       })
+  totalObject = [];
 
 
-//       totalObject.push(
-//         {
-//           category: currentCategory,
-//           totals: {
-//             thisWeek: weekTotal,
-//             thisMonth: thisMonthTotal,
-//             thisYear: thisYearTotal,
-//           }
-//         }
-//       )
+  allCategories.forEach(function (currentCategory) {
 
-//     });
+    let weekTotal = 0;
+    let thisMonthTotal = 0;
+    let thisYearTotal = 0;
 
-//     // take the html elements and add them to the category addition function instead
+    allExpenses.forEach(function (currentEntry) {
+      if (currentEntry.category === currentCategory) {
+        if (currentEntry.date > thisWeek) {
+          weekTotal += currentEntry.amount;
 
-//     totalObject.forEach(function (entry) {
+        }
+        if (currentEntry.date > thisMonth) {
+          thisMonthTotal += currentEntry.amount;
+        }
+        if (currentEntry.date > firstDayOfYear) {
+          thisYearTotal += currentEntry.amount;
+        }
+      }
+    })
 
-//       //WEEK
-//       let newRowWeek = document.createElement('tr');
-//       let newItemWeek = document.createElement('td');
-//       let newItemWeek2 = document.createElement('td');
+    totalObject.push(
+      {
+        category: currentCategory,
+        totals: {
+          thisWeek: weekTotal,
+          thisMonth: thisMonthTotal,
+          thisYear: thisYearTotal,
+        }
+      }
+    )
 
+  });
 
-//       newRowWeek.id = entry.category + '-row-week'
-//       newItemWeek.textContent = entry.category;
-//       newItemWeek2.textContent = '$' + entry.totals.thisWeek;
+  totalObject.forEach(function (categorySummary) {
+    let weekCategory = document.createElement('th');
+    weekCategory.textContent = categorySummary.category;
+    theadRow.appendChild(weekCategory);
+    
+    let weekAmount = document.createElement('td');
+    weekAmount.textContent = categorySummary.totals.thisWeek;
+    summaryWeek.appendChild(weekAmount);
+    
+    let monthAmount = document.createElement('td');
+    monthAmount.textContent = categorySummary.totals.thisMonth;
+    summaryMonth.appendChild(monthAmount);
+    
+    let yearAmount = document.createElement('td');
+    yearAmount.textContent = categorySummary.totals.thisYear;
+    summaryYear.appendChild(yearAmount);
 
+  })
 
-//       thisWeekDOM.appendChild(newRowWeek);
-//       newRowWeek.appendChild(newItemWeek);
-//       newRowWeek.appendChild(newItemWeek2);
-
-
-//       //MONTH
-//       let newRowMonth = document.createElement('tr');
-//       let newItemMonth = document.createElement('td');
-//       let newItemMonth2 = document.createElement('td');
-
-
-//       newRowMonth.id = entry.category + '-row-month'
-//       newItemMonth.textContent = entry.category;
-//       newItemMonth2.textContent = '$' + entry.totals.thisMonth;
-
-
-//       thisMonthDOM.appendChild(newRowMonth);
-//       newRowMonth.appendChild(newItemMonth);
-//       newRowMonth.appendChild(newItemMonth2);
-
-
-//       //THIS YEAR
-//       let newRowYear = document.createElement('tr');
-//       let newItemYear = document.createElement('td');
-//       let newItemYear2 = document.createElement('td');
-
-
-//       newRowYear.id = entry.category + '-row-year'
-//       newItemYear.textContent = entry.category;
-//       newItemYear2.textContent = '$' + entry.totals.thisYear;
+  console.log(totalObject)
+}
 
 
-//       thisYearDOM.appendChild(newRowYear);
-//       newRowYear.appendChild(newItemYear);
-//       newRowYear.appendChild(newItemYear2);
 
+generateSummary();
 
-//     })
-
-//   }
-// }
-
-
-// generateSummary();
-
-
+// USE THIS CODE, BUT AFTER TOTALOBJECT HAS BEEN UPDATED
