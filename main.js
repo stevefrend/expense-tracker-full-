@@ -64,6 +64,7 @@ newExpenseBtn.addEventListener('click', function () {
     newCategoryOption.id = category;
     newCategoryOption.value = category;
     newCategoryOption.text = category;
+    generateSummary();
     categoryDropdown.appendChild(newCategoryOption);
   })
 })
@@ -73,6 +74,7 @@ newExpenseForm.addEventListener('submit', function (e) {
   allExpenses.push({ category: categoryDropdown.value, amount: Number(amountInput.value), comment: commentInput.value, date: moment().format() })
   localStorage.setItem('allExpenses', JSON.stringify(allExpenses));
   $('#myModal').modal('hide')
+  generateSummary();
   newExpenseForm.reset();
 
 });
@@ -80,7 +82,6 @@ newExpenseForm.addEventListener('submit', function (e) {
 
 // CREATE EDIT FUNCITONALITY
 
-// 1. fix summary
 // 2. find a way to add edit button to each entry, with change amount, category, and delete options
 
 manageExpensesBtn.addEventListener('click', function () {
@@ -113,13 +114,32 @@ manageExpensesBtn.addEventListener('click', function () {
 const generateSummary = function () {
 
   totalObject = [];
-
+  theadRow.innerHTML = ''
+  summaryWeek.innerHTML = ''
+  summaryMonth.innerHTML = ''
+  summaryYear.innerHTML = ''
+  
+  
+  
+  let initCurrent = document.createElement('th');
+  initCurrent.textContent = 'Current';
+  theadRow.appendChild(initCurrent);
+  let initWeek = document.createElement('th');
+  initWeek.textContent = 'Week';
+  summaryWeek.appendChild(initWeek);
+  let initMonth = document.createElement('th');
+  initMonth.textContent = 'Month';
+  summaryMonth.appendChild(initMonth);
+  let initYear = document.createElement('th');
+  initYear.textContent = 'Year';
+  summaryYear.appendChild(initYear);
 
   allCategories.forEach(function (currentCategory) {
 
     let weekTotal = 0;
     let thisMonthTotal = 0;
     let thisYearTotal = 0;
+    
 
     allExpenses.forEach(function (currentEntry) {
       if (currentEntry.category === currentCategory) {
@@ -165,10 +185,7 @@ const generateSummary = function () {
     let yearAmount = document.createElement('td');
     yearAmount.textContent = categorySummary.totals.thisYear;
     summaryYear.appendChild(yearAmount);
-
   })
-
-  console.log(totalObject)
 }
 
 
