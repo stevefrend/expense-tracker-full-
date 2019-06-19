@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Expense Tracker - Edit</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="main-id">
+    <div class="mt-4 py-3 text-center">
+      <h1 class="text-primary">Edit</h1>
+    </div>
+    <div class="mb-1">
+      <nav class="nav justify-content-center">
+        <ul class="nav nav-pills">
+          <li class="nav-item"></li>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="summary.html" class="nav-link">Summary</a>
+          <a href="edit.html" class="nav-link active">Edit</a>
+        </ul>
+      </nav>
+    </div>
+  </div>
+    <hr>
+    <div class="container my-3">
+      <h5 class="text-center">LAST 5 ENTRIES</h5>
+        <div>
+          <table class="table">
+            <thead class="thead-light"">
+                                <tr>
+                                    <th scope=" col">#</th>
+              <th scope="col">Category</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Date</th>
+              </tr>
+            </thead>
+            <tbody id="manage-expenses-body">
+            </tbody>
+          </table>
+        </div>
+    </div>
+  <script src="lib/moment/moment.min.js"></script>
+  <script src="init.js"></script>
+  <script src="edit.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

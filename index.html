@@ -2,172 +2,112 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Expense Tracker - Home</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Expense Tracker - Home</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div id="main-id">
-        <div class="mt-4 py-3 text-center">
-            <h1 class="text-primary">Expense Tracker</h1>
-        </div>
-        <div class="mb-4">
-            <nav class="nav justify-content-center">
-                <ul class="nav nav-pills">
-                    <li class="nav-item"></li>
-                    <a href="#summary" class="nav-link">Summary</a>
-                </ul>
-            </nav>
-        </div>
-        <hr>
-        <div class="container my-5">
-            <button class="btn btn-outline-primary col p-5 mb-5" data-toggle="modal" data-target="#myModal"
-                id="new-expense-btn">ADD NEW
-                EXPENSE</button>
-            <div class="modal fade" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary d-flex justify-content-center">
-                            <h5 class="modal-title text-white">New Expense</h5>
-                        </div>
-                        <div class="modal-body">
-                            <form id="new-expense-form">
-                                <div class="row mx-3">
-                                    <div class="form-group mr-auto">
-                                        <label for="amount">Amount</label>
-                                        <input class="form-control" required type="number" id="amount-input">
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="text-center" for="dropdown">Category</label>
-                                        <select class="form-control" name="dropdown" id="dropdown" required>
-                                            <!-- CATEGORIES GET APPENDED HERE -->
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group mx-3">
-                                    <label for="comment">Comment</label>
-                                    <input class="form-control" type="text" id="comment-input" placeholder="(Optional)">
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button class="btn btn-outline-info" type="submit">Enter</button>
-                                    <button class="btn" data-dismiss="modal">Close</button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-primary col mb-3" data-toggle="modal" data-target="#categoryModal">MANAGE
-                CATEGORIES</button>
-            <div class="modal fade" id="categoryModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary d-flex justify-content-center">
-                            <h5 class="modal-title text-white">MANAGE CATEGORIES</h5>
-                        </div>
-                        <div class="modal-body">
-                            <form id="new-category-form">
-                                <div class="row d-flex justify-content-center">
-                                    <div class="form-group">
-                                        <input class="form-control" type="text" name="category"
-                                            placeholder="Add Category" required id="category">
-                                    </div>
-
-                                </div>
-                                <div class="modal-footer d-flex justify-content-center">
-                                    <button class="btn btn-outline-info" type="submit">Enter</button>
-                                    <button class="btn" data-dismiss="modal">Close</button>
-                                </div>
-                            </form>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <button class="btn btn-primary col mb-3" data-toggle="modal" data-target="#expensesModal"
-                id="manage-expenses-btn">MANAGE EXPENSES</button>
-            <div class="modal fade" id="expensesModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-primary d-flex justify-content-center">
-                            <h5 class="modal-title text-white">LAST 5 ENTRIES</h5>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <thead class="thead-light"">
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Category</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="manage-expenses-body">
-                                </tbody>
-                            </table>
-                            <div class="modal-footer d-flex justify-content-center">
-
-                                <button class="btn" id="close-manage-expenses" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+  <div id="main-id">
+    <div class="mt-4 py-3 text-center">
+      <h1 class="text-primary">Expense Tracker</h1>
+    </div>
+    <div class="mb-4">
+      <nav class="nav justify-content-center">
+        <ul class="nav nav-pills">
+          <li class="nav-item"></li>
+          <a href="index.html" class="nav-link active">Home</a>
+          <li class="nav-item"></li>
+          <a href="summary.html" class="nav-link">Summary</a>
+          <li class="nav-item"></li>
+          <a href="edit.html" class="nav-link">Edit</a>
+        </ul>
+      </nav>
     </div>
     <hr>
-    <div id="summary">
-        <div class="mt-4 py-3 text-center">
-            <h1 class="text-primary">Summary</h1>
-        </div>
-        <hr>
-        <div>
-            <div class="text-center py-3">
-                <table class="table">
-                    <thead class="thead-light">
-                        <tr id="t-head">
-                            <!-- <th>Category</th>                             -->
-                            <!-- <th>$</th> -->
-
-                        </tr>
-                    </thead>
-                    <tbody id="this-week"">
-                        <tr id="week-row">
-
-                        </tr>
-                        <tr id="month-row">
-
-                        </tr>
-                        <tr id="year-row">
-
-                        </tr>
-
-                    </tbody>
-                </table>
+    <div class="container my-5">
+      <button class="btn btn-outline-primary col p-5 mb-5" data-toggle="modal" data-target="#myModal"
+        id="new-expense-btn">ADD NEW
+        EXPENSE</button>
+      <div class="modal fade" id="myModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-primary d-flex justify-content-center">
+              <h5 class="modal-title text-white">New Expense</h5>
+            </div>
+            <div class="modal-body">
+              <form id="new-expense-form">
+                <div class="row mx-3">
+                  <div class="form-group mr-auto">
+                    <label for="amount">Amount</label>
+                    <input class="form-control" required type="number" id="amount-input">
+                  </div>
+                  <div class="form-group">
+                    <label class="text-center" for="dropdown">Category</label>
+                    <select class="form-control" name="dropdown" id="dropdown" required>
+                      <!-- CATEGORIES GET APPENDED HERE -->
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group mx-3">
+                  <label for="comment">Comment</label>
+                  <input class="form-control" type="text" id="comment-input" placeholder="(Optional)">
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button class="btn btn-outline-info" type="submit">Enter</button>
+                  <button class="btn" data-dismiss="modal">Close</button>
+                </div>
+              </form>
             </div>
 
+          </div>
         </div>
+      </div>
+      <button class="btn btn-primary col mb-3" data-toggle="modal" data-target="#categoryModal">ADD CATEGORY</button>
+      <div class="modal fade" id="categoryModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header bg-primary d-flex justify-content-center">
+              <h5 class="modal-title text-white">ADD CATEGORY</h5>
+            </div>
+            <div class="modal-body">
+              <form id="new-category-form">
+                <div class="row d-flex justify-content-center">
+                  <div class="form-group">
+                    <input class="form-control" type="text" name="category" placeholder="Add Category" required
+                      id="category">
+                  </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                  <button class="btn btn-outline-info" type="submit">Enter</button>
+                  <button class="btn" data-dismiss="modal">Close</button>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-
-    <script src="lib/moment/moment.min.js"></script>
-    <script src="main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+  <script src="lib/moment/moment.min.js"></script>
+  <script src="init.js"></script>
+  <script src="main.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>
