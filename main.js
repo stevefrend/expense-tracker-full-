@@ -3,6 +3,7 @@
 init();
 getLSinfo();
 
+
 // ADD EVENT LISTENERS
 
 newCategoryForm.addEventListener('submit', function (e) {
@@ -16,6 +17,7 @@ newCategoryForm.addEventListener('submit', function (e) {
 
 
 newExpenseBtn.addEventListener('click', function () {
+  dateInput.value = moment().format('YYYY-MM-DD')
   categoryDropdown.innerHTML = '';
   allCategories.forEach(function (category) {
     let newCategoryOption = document.createElement('option');
@@ -29,10 +31,16 @@ newExpenseBtn.addEventListener('click', function () {
 
 newExpenseForm.addEventListener('submit', function (e) {
   e.preventDefault();
-  allExpenses.push({ category: categoryDropdown.value, amount: Number(amountInput.value), comment: commentInput.value, date: moment().format() })
+  
+  allExpenses.push({ 
+    category: categoryDropdown.value, 
+    amount: Number(amountInput.value), 
+    comment: commentInput.value, 
+    date: moment(dateInput.value), 
+    id: uuidv4() })
+  
   localStorage.setItem('allExpenses', JSON.stringify(allExpenses));
   $('#myModal').modal('hide')
-  generateSummary();
   newExpenseForm.reset();
 
 });

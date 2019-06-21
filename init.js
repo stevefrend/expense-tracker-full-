@@ -2,6 +2,7 @@
 let allExpenses = [];
 let allCategories = [];
 
+
 const init = function () {
 
   today = moment().format();
@@ -15,11 +16,12 @@ const init = function () {
   newExpenseForm = document.querySelector('#new-expense-form');
   amountInput = document.getElementById('amount-input');
   commentInput = document.getElementById('comment-input');
+  dateInput = document.getElementById('date-input');
   categoryDropdown = document.getElementById('dropdown');
   
-  manageExpensesBtn = document.querySelector('#manage-expenses-btn')
+
   manageExpensesBody = document.querySelector('#manage-expenses-body')
-  manageExpensesClose = document.querySelector('#close-manage-expenses')
+
 
   summaryWeek = document.querySelector('#week-row');
   summaryMonth = document.querySelector('#month-row');
