@@ -6,6 +6,9 @@ getLSinfo();
 const editAmount = document.getElementById('edit-amount');
 const editComment = document.getElementById('edit-comment');
 const editDate = document.getElementById('edit-date');
+const deleteEntry = document.getElementById('delete-entry');
+const table = document.getElementById('table')
+
 
 
 const createLastFive = function () {
@@ -20,6 +23,7 @@ const createLastFive = function () {
     newIndex.textContent = index + 1;
     let newAmount = document.createElement('td');
     newAmount.textContent = '$' + entry.amount;
+    newAmount.type = 'number';
     let newCategory = document.createElement('td');
     newCategory.textContent = entry.category;
     let newDate = document.createElement('td');
@@ -47,7 +51,6 @@ createLastFive();
 
 
 
-const table = document.getElementById('table')
 
 table.addEventListener('click', function (e) {
   if (e.target.classList.contains('edit-button'))  {
@@ -57,10 +60,13 @@ table.addEventListener('click', function (e) {
       return logged.id === e.target.id;
     })
 
+    let entryIndex = allExpenses.findIndex(allEntries => allEntries === entry)
+    
+
     console.log(entry)
     document.querySelector('#edit-entry-form').addEventListener('submit', function (e) {
       if (editAmount.value.length !== 0) {
-        entry.amount = editAmount.value;
+        entry.amount = Number(editAmount.value);
       }
       if (editComment.value.length !== 0) {
         entry.comment = editComment.value;
@@ -68,9 +74,17 @@ table.addEventListener('click', function (e) {
       if (editDate.value.length !== 0) {
         entry.date = moment(editDate.value).format();
       }
+      
       // e.preventDefault();
       localStorage.setItem('allExpenses', JSON.stringify(allExpenses));
       $('#myModal').modal('hide')
+    })
+    deleteEntry.addEventListener('click', function () {
+      if (window.confirm('Are you sure?')) {
+        allExpenses.splice(entryIndex, 1)
+        localStorage.setItem('allExpenses', JSON.stringify(allExpenses));
+      }
+
     })
   }
 })
